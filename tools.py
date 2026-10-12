@@ -13,7 +13,7 @@ COLOR_HIERARCHY = {
     "Grey": {"priority": 6, "status": "Rejected", "fill": "BFBFBF", "font": "333333", "prefix": "Duplicate listing"},
     "Yellow": {"priority": 7, "status": "Pending Data", "fill": "FFFF99", "font": "7F6000", "prefix": "Pending data"},
     "Amber": {"priority": 8, "status": "Hold (Proof Required)", "fill": "FFE699", "font": "856404", "prefix": "Hold - proof required"},
-    "None": {"priority": 9, "status": "Passed", "fill": "C6EFCE", "font": "006100", "prefix": "Passed - no flags"},
+    "None": {"priority": 9, "status": "Passed", "fill": "C6EFCE", "font": "006100", "prefix": "Passed - no flags"}
 }
 
 G01_PLACEHOLDER_PATTERNS = [
@@ -27,7 +27,7 @@ G01_PLACEHOLDER_PATTERNS = [
 ]
 
 BANNED_PATTERNS = [
-    ("F-01", r"\b(?:potassium bromate|bromated flour|e924)\b", "potassium bromate / bromated flour ban"),
+    ("F-01", r"\b(?:potassium bromate|bromated flour|e924)\b", "potassium bromate ban"),
     ("F-02", r"\b(?:azodicarbonamide|e927a|dough conditioner)\b", "azodicarbonamide ban"),
     ("F-03", r"\b(?:brominated vegetable oil|bvo|brominated oil)\b", "BVO ban"),
     ("F-04", r"\b(?:fd&c|red\s*(?:3|40)|yellow\s*(?:5|6)|blue\s*(?:1|2)|green\s*3|e102|e110|e122|e124|e129|e133|erythrosine|tartrazine|allura red|brilliant blue|sunset yellow)\b", "synthetic petroleum-dye ban"),
@@ -36,7 +36,7 @@ BANNED_PATTERNS = [
     ("F-07", r"\b(?:partially hydrogenated|interesterified fat|hydrogenated (?:soybean|cottonseed|palm|canola|vegetable) oil|shortening)\b", "trans fat / hydrogenated oil ban"),
     ("F-08", r"\b(?:sodium nitrite|sodium nitrate|potassium nitrite|potassium nitrate|e249|e250|e251|e252)\b", "nitrite / nitrate preservative ban"),
     ("F-09", r"\b(?:bha|bht|tbhq|propyl gallate|ethoxyquin|butylated hydroxyanisole|butylated hydroxytoluene|tert-butylhydroquinone|e310|e319|e320|e321)\b", "synthetic antioxidant preservative ban"),
-    ("F-11", r"\b(?:caramel colou?r|e150c|e150d|class (?:iii|iv) caramel)\b", "caramel color (4-MEI risk) ban"),
+    ("F-11", r"\b(?:caramel colou?r|e150c|e150d|class (?:iii|iv) caramel)\b", "caramel color ban"),
     ("F-12", r"\b(?:propylparaben|methylparaben|e216|e217)\b", "paraben preservative ban"),
     ("F-13", r"\b(?:high[- ]fructose corn syrup|hfcs|glucose-fructose syrup|corn syrup(?:\s*solids)?)\b", "HFCS / refined sweetener syrup ban"),
     ("F-15", r"\b(?:methylene chloride|dichloromethane|solvent-decaffeinated)\b", "methylene-chloride decaf ban"),
@@ -62,7 +62,7 @@ BANNED_PATTERNS = [
     ("H-01", r"\b(?:paraffin wax|petroleum paraffin)\b", "paraffin candle wax ban"),
     ("H-04", r"\b(?:benzalkonium chloride|didecyldimethylammonium chloride)\b", "quaternary ammonium (quat) ban"),
     ("H-05", r"\b(?:sodium hypochlorite|chlorine bleach|2-butoxyethanol|perchloroethylene)\b", "chlorine bleach / glycol ether ban"),
-    ("H-06", r"\b(?:nonylphenol|optical brightener)\b", "NPE / optical brightener ban"),
+    ("H-06", r"\b(?:nonylphenol|optical brightener)\b", "NPE / optical brightener ban")
 ]
 
 F14_MARKERS = [
@@ -72,32 +72,32 @@ F14_MARKERS = [
     ("artificial flavor", r"\b(?:artificial\s+(?:\w+\s+)?flavo(?:u)?rs?(?:ing)?|nature-identical\s+flavo(?:u)?rs?)\b"),
     ("flavor enhancer (MSG/E621-E635)", r"\b(?:monosodium glutamate|msg|disodium inosinate|disodium guanylate|e621|e627|e631|e635)\b"),
     ("modified food starch", r"\bmodified\s+(?:corn|food|potato)\s+starch\b"),
-    ("soy lecithin (conventional)", r"(?<!organic\s)\bsoy lecithin\b"),
+    ("soy lecithin (conventional)", r"(?<!organic\s)\bsoy lecithin\b")
 ]
 
 G07_CLAIM_PATTERNS = [
     r"\bcures?\s+(?:cancer|diabetes|alzheimer|disease|autism|arthritis)\b",
     r"\bmiracle\s+weight[- ]loss\b",
-    r"\b100%\s+disease\s+reversal\b",
+    r"\b100%\s+disease\s+reversal\b"
 ]
 
 W01_SUGARS = [
     r"\bcane sugar\b", r"\braw cane sugar\b", r"\bhoney\b",
     r"\bagave(?:\s*nectar|\s*syrup)?\b", r"\bmaple syrup\b", r"\bdate syrup\b",
     r"\bcoconut sugar\b", r"\bbrown sugar\b", r"\b(?:\w+\s+)?juice concentrate\b",
-    r"(?<!zero\s)(?<!no\s)(?<!without\s)\bsugar\b",
+    r"(?<!zero\s)(?<!no\s)(?<!without\s)\bsugar\b"
 ]
 
 W02_CAFFEINE = [
     r"\bcaffeine\b", r"\bguarana\b", r"\byerba mate\b", r"\bcoffeeberry\b",
-    r"\bsvetol\b", r"\bgreen coffee(?:\s*bean)?\b", r"\bkola nut\b", r"\bgreen tea caffeine\b",
+    r"\bsvetol\b", r"\bgreen coffee(?:\s*bean)?\b", r"\bkola nut\b", r"\bgreen tea caffeine\b"
 ]
 
 W03_GUMS = [
     r"\bcarrageenan\b", r"\be407\b", r"\bxanthan(?:\s*gum)?\b",
     r"\bguar(?:\s*gum|\s*fiber)?\b", r"\bgellan(?:\s*gum)?\b",
     r"\barabic gum\b", r"\bgum acacia\b", r"\bacacia gum\b",
-    r"\blocus bean gum\b", r"\btara gum\b",
+    r"\blocus bean gum\b", r"\btara gum\b"
 ]
 
 G06_HEAVY_METAL_TRIGGERS = [
@@ -118,7 +118,7 @@ G06_HEAVY_METAL_TRIGGERS = [
     ("sea moss", r"\bsea moss\b"),
     ("spirulina", r"\bspirulina\b"),
     ("chlorella", r"\bchlorella\b"),
-    ("protein powder", r"\b(?:whey|pea|hemp|brown rice|soy)\s+protein\b"),
+    ("protein powder", r"\b(?:whey|pea|hemp|brown rice|soy)\s+protein\b")
 ]
 
 F17_AUTHENTICITY_TRIGGERS = [
@@ -140,7 +140,7 @@ W12_UPPER_LIMIT_NUTRIENTS = [
     ("zinc", r"\bzinc\b"),
     ("iron", r"\biron\b|\bferrous\b"),
     ("melatonin", r"\bmelatonin\b"),
-    ("niacin", r"\bniacin\b(?!amide)"),
+    ("niacin", r"\bniacin\b(?!amide)")
 ]
 
 W18_BOTANICAL_CAUTIONS = [
@@ -149,7 +149,7 @@ W18_BOTANICAL_CAUTIONS = [
     ("licorice", r"\blicorice\b|\bglycyrrhiza\b"),
     ("black cohosh", r"\bblack cohosh\b"),
     ("kava", r"\bkava\b"),
-    ("st. john's wort", r"\bst\.?\s*john'?s wort\b"),
+    ("st. john's wort", r"\bst\.?\s*john'?s wort\b")
 ]
 
 
@@ -157,10 +157,8 @@ def detect_w06_conventional(ing_text: str, prod_name: str = "") -> list:
     if not ing_text:
         return []
     clauses = re.split(r"[,;()\[\]]|\band\b", ing_text, flags=re.I)
-    global_organic = bool(re.search(r"\b(?:100%\s+organic|usda\s+organic)\b", prod_name, re.I))
-    if global_organic:
+    if re.search(r"\b(?:100%\s+organic|usda\s+organic)\b", prod_name, re.I):
         return []
-
     found_crops = []
     for clause in clauses:
         c_low = clause.strip().lower()
@@ -181,7 +179,7 @@ def evaluate_product_comprehensive(
     is_exact_dup: bool = False,
     dup_of_row: int = None,
     sibling_rows: list = None,
-    prefer_existing_notes: bool = False,
+    prefer_existing_notes: bool = False
 ):
     existing_issue = str(row.get("Screening issue", "")).strip()
     if prefer_existing_notes and existing_issue and existing_issue.lower() not in ["nan", "none", ""]:
@@ -548,7 +546,7 @@ def tool_screen_and_writeback(wb_source, min_rating: float = 4.2, prefer_existin
                 is_exact_dup=row_data["_is_exact_dup"],
                 dup_of_row=row_data["_dup_of_row"],
                 sibling_rows=siblings,
-                prefer_existing_notes=prefer_existing_notes,
+                prefer_existing_notes=prefer_existing_notes
             )
 
             row_data["Screening Status"] = status
@@ -594,7 +592,7 @@ def tool_lookup_product(df, query):
     stop_words = {
         "why", "was", "is", "the", "product", "marked", "as", "in", "for",
         "check", "status", "of", "tell", "me", "about", "audit", "screen",
-        "hold", "rejected", "banned", "passed", "draft", "email", "outreach",
+        "hold", "rejected", "banned", "passed", "draft", "email", "outreach"
     }
     tokens = [t for t in re.split(r"\W+", query.lower()) if len(t) > 2 and t not in stop_words]
     if not tokens:
@@ -625,7 +623,7 @@ def tool_category_summary(df, category_name):
         "Pass_Rate": (passed / tot) * 100 if tot else 0,
         "Hold": int((cat_df["Screening Status"] == "Hold (Proof Required)").sum()),
         "Rejected": int((cat_df["Screening Status"] == "Rejected").sum()),
-        "Pending Data": int((cat_df["Screening Status"] == "Pending Data").sum()),
+        "Pending Data": int((cat_df["Screening Status"] == "Pending Data").sum())
     }
 
 
@@ -651,23 +649,19 @@ def tool_generate_coa_email(prod_series):
     issues = prod_series.get("Screening Summary") or "COA Documentation"
     email_addr = prod_series.get("Contact Email") or "compliance@brand.com"
 
-    body = f"""Subject: Nutrition Nest Onboarding: Batch COA & Documentation Request for {p_name}
-
-Dear {m_name} Quality & Regulatory Team,
-
-We are currently evaluating {p_name} for procurement and retail shortlisting at Nutrition Nest ([www.nutritionnest.com](https://www.nutritionnest.com)).
-
-To clear our Stage-2 safety gates under our strict ingredient standards, we kindly request the following documentation for this SKU:
-- Batch-level Certificate of Analysis (COA) & verification for: {issues}
-- Lab testing verification for heavy metals (lead, arsenic, cadmium, mercury), mycotoxins, and pesticide/glyphosate residues.
-- Confirmation of FDA facility registration and product liability insurance.
-
-Please forward the testing documentation at your earliest convenience so our regulatory committee can finalize product selection.
-
-Warm regards,
-
-Category Procurement Team
-Nutrition Nest"""
+    body = (
+        f"Subject: Nutrition Nest Onboarding: Batch COA & Documentation Request for {p_name}\n\n"
+        f"Dear {m_name} Quality & Regulatory Team,\n\n"
+        f"We are currently evaluating {p_name} for procurement and retail shortlisting at Nutrition Nest (www.nutritionnest.com).\n\n"
+        f"To clear our Stage-2 safety gates under our strict ingredient standards, we kindly request the following documentation for this SKU:\n"
+        f"- Batch-level Certificate of Analysis (COA) & verification for: {issues}\n"
+        f"- Lab testing verification for heavy metals (lead, arsenic, cadmium, mercury), mycotoxins, and pesticide/glyphosate residues.\n"
+        f"- Confirmation of FDA facility registration and product liability insurance.\n\n"
+        f"Please forward the testing documentation at your earliest convenience so our regulatory committee can finalize product selection.\n\n"
+        f"Warm regards,\n\n"
+        f"Category Procurement Team\n"
+        f"Nutrition Nest"
+    )
     return email_addr, body
 
 
@@ -679,4 +673,6 @@ def tool_commercial_metrics(df):
     m_med = clean["Numeric_MOQ"].dropna().median() if "Numeric_MOQ" in clean.columns and not clean["Numeric_MOQ"].dropna().empty else 1.0
     return {
         "Total": len(clean),
-        "Median_Price":
+        "Median_Price": float(p_med),
+        "Median_MOQ": int(m_med)
+    }
