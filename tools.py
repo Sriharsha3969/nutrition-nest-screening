@@ -26,26 +26,46 @@ G01_PLACEHOLDER_PATTERNS = [
     r"exact label wording", r"\bassumed\b", r"\bpresumed\b", r"same recipe as"
 ]
 
+# COMBINED BANNED PATTERNS: Sheet 21 Sections 2-5 + Sheet 22 Additional Guidelines
 BANNED_PATTERNS = [
-    ("F-01", r"\b(?:potassium bromate|bromated flour|e924)\b", "potassium bromate ban"),
-    ("F-02", r"\b(?:azodicarbonamide|e927a|dough conditioner)\b", "azodicarbonamide ban"),
-    ("F-03", r"\b(?:brominated vegetable oil|bvo|brominated oil)\b", "BVO ban"),
-    ("F-04", r"\b(?:fd&c|red\s*(?:3|40)|yellow\s*(?:5|6)|blue\s*(?:1|2)|green\s*3|e102|e110|e122|e124|e129|e133|erythrosine|tartrazine|allura red|brilliant blue|sunset yellow)\b", "synthetic petroleum-dye ban"),
-    ("F-05", r"\b(?:titanium dioxide|tio2|e171|ci\s*77891)\b", "titanium dioxide ban"),
-    ("F-06", r"\b(?:sucralose|aspartame|acesulfame(?:-k|\s*potassium)?|saccharin|sodium saccharin|cyclamate|neotame|advantame|e950|e951|e952|e954|e955)\b", "artificial sweetener ban"),
-    ("F-07", r"\b(?:partially hydrogenated|interesterified fat|hydrogenated (?:soybean|cottonseed|palm|canola|vegetable) oil|shortening)\b", "trans fat / hydrogenated oil ban"),
-    ("F-08", r"\b(?:sodium nitrite|sodium nitrate|potassium nitrite|potassium nitrate|e249|e250|e251|e252)\b", "nitrite / nitrate preservative ban"),
-    ("F-09", r"\b(?:bha|bht|tbhq|propyl gallate|ethoxyquin|butylated hydroxyanisole|butylated hydroxytoluene|tert-butylhydroquinone|e310|e319|e320|e321)\b", "synthetic antioxidant preservative ban"),
+    # Additional Guidelines (Sheet 22) - Refined & Treated Flours
+    ("AG-08", r"\b(?:bleached flour|enriched flour|bromated flour|potassium bromate|e924|azodicarbonamide|e927a)\b", "refined/treated flour ban (bleached/enriched/bromated/ADA)"),
+    
+    # Additional Guidelines (Sheet 22) - Industrial Seed Oils
+    ("AG-01", r"\b(?:soybean oil|canola oil|rapeseed oil|cottonseed oil|corn oil|sunflower oil|safflower oil|grapeseed oil|vegetable oil|hexane-extracted)\b", "industrial seed oil ban"),
+    
+    # Additional Guidelines (Sheet 22) - Hydrogenated Fats
+    ("AG-02", r"\b(?:partially hydrogenated|hydrogenated (?:soybean|cottonseed|palm|canola|vegetable) oil|shortening|interesterified fat)\b", "hydrogenated fat / trans fat ban"),
+    
+    # Additional Guidelines (Sheet 22) - Refined Sugars and Syrups (Cane sugar allowed)
+    ("AG-03", r"\b(?:high[- ]fructose corn syrup|hfcs|corn syrup(?:\s*solids)?|dextrose|invert sugar)\b", "refined sugar/syrup ban (HFCS/corn syrup/dextrose/invert sugar)"),
+    
+    # Additional Guidelines (Sheet 22) - Artificial Sweeteners
+    ("AG-04", r"\b(?:sucralose|aspartame|acesulfame(?:-k|\s*potassium)?|ace k|saccharin|sodium saccharin|cyclamate|neotame|advantame|e950|e951|e952|e954|e955)\b", "artificial sweetener ban"),
+    
+    # Additional Guidelines (Sheet 22) - Artificial Colors
+    ("AG-05", r"\b(?:fd&c|red\s*(?:3|40)|yellow\s*(?:5|6)|blue\s*(?:1|2)|green\s*3|e102|e110|e122|e124|e129|e133|erythrosine|tartrazine|allura red|brilliant blue|sunset yellow|titanium dioxide|tio2|e171|ci\s*77891)\b", "artificial color / titanium dioxide ban"),
+    
+    # Additional Guidelines (Sheet 22) - Artificial Flavors
+    ("AG-06", r"\b(?:artificial\s+(?:\w+\s+)?flavo(?:u)?r(?:ing)?s?|nature-identical\s+flavo(?:u)?r(?:ing)?s?)\b", "artificial flavor ban"),
+    
+    # Additional Guidelines (Sheet 22) - Synthetic Preservatives
+    ("AG-07", r"\b(?:bha|bht|tbhq|propyl gallate|propylparaben|sodium nitrite|sodium nitrate|potassium nitrite|potassium nitrate|e249|e250|e251|e252|e310|e319|e320|e321)\b", "synthetic preservative ban (BHA/BHT/TBHQ/parabens/nitrites/nitrates)"),
+    
+    # Additional Guidelines (Sheet 22) - Brominated Oil
+    ("AG-09", r"\b(?:brominated vegetable oil|bvo|brominated oil)\b", "brominated oil (BVO) ban"),
+    
+    # Additional Guidelines (Sheet 22) - High Mercury Fish
+    ("AG-10", r"\b(?:swordfish|king mackerel|shark|tilefish|bigeye tuna|marlin)\b", "high-mercury fish ban"),
+    
+    # Additional Guidelines (Sheet 22) - Endocrine Disruptors & Packaging
+    ("AG-11", r"\b(?:bisphenol[- ]a|bpa|methylparaben|ethylparaben|butylparaben|isobutylparaben|benzylparaben|phthalate|dibutyl phthalate|diethylhexyl phthalate|dbp|dehp|dep|bbp)\b", "endocrine disruptor ban (parabens/phthalates/BPA)"),
+    
+    # Sheet 21 Specific Rules
     ("F-11", r"\b(?:caramel colou?r|e150c|e150d|class (?:iii|iv) caramel)\b", "caramel color ban"),
-    ("F-12", r"\b(?:propylparaben|methylparaben|e216|e217)\b", "paraben preservative ban"),
-    ("F-13", r"\b(?:high[- ]fructose corn syrup|hfcs|glucose-fructose syrup|corn syrup(?:\s*solids)?)\b", "HFCS / refined sweetener syrup ban"),
     ("F-15", r"\b(?:methylene chloride|dichloromethane|solvent-decaffeinated)\b", "methylene-chloride decaf ban"),
-    ("F-18", r"\b(?:swordfish|king mackerel|shark|tilefish|bigeye tuna|marlin)\b", "high-mercury fish ban"),
     ("F-19", r"\b(?:dmaa|dmba|dmha|sibutramine|ephedra|ephedrine|sarms|prohormone|phenibut|tianeptine|kratom|aristolochic acid|comfrey)\b", "banned supplement compound"),
     ("F-20", r"\b(?:talc|magnesium silicate)\b", "talc / asbestos risk ban"),
-    ("F-21", r"\b(?:soybean oil|canola oil|rapeseed oil|cottonseed oil|corn oil|hexane-extracted)\b", "refined industrial seed oil"),
-    ("P-01", r"\b(?:methylparaben|ethylparaben|propylparaben|butylparaben|isobutylparaben|benzylparaben)\b", "paraben endocrine disruptor ban"),
-    ("P-02", r"\b(?:dibutyl phthalate|diethylhexyl phthalate|dbp|dehp|dep|bbp|phthalate)\b", "phthalate ban"),
     ("P-03", r"\b(?:formaldehyde|dmdm hydantoin|quaternium-15|imidazolidinyl urea|diazolidinyl urea|bronopol|sodium hydroxymethylglycinate)\b", "formaldehyde / releaser ban"),
     ("P-04", r"\b(?:ptfe|teflon|perfluoro\w+|polyfluoro\w+)\b", "PFAS / forever-chemical ban"),
     ("P-05", r"\b(?:triclosan|triclocarban|chloroxylenol)\b", "triclosan antibacterial ban"),
@@ -69,7 +89,6 @@ F14_MARKERS = [
     ("mono-/diglycerides", r"\bmono-?\s*(?:and|&|/)?\s*diglycerides(?:\s*of fatty acids)?\b"),
     ("polysorbate", r"\bpolysorbate\s*\d+\b"),
     ("carboxymethylcellulose", r"\b(?:carboxymethyl\s*cellulose|cellulose gum|cmc|e466)\b"),
-    ("artificial flavor", r"\b(?:artificial\s+(?:\w+\s+)?flavo(?:u)?rs?(?:ing)?|nature-identical\s+flavo(?:u)?rs?)\b"),
     ("flavor enhancer (MSG/E621-E635)", r"\b(?:monosodium glutamate|msg|disodium inosinate|disodium guanylate|e621|e627|e631|e635)\b"),
     ("modified food starch", r"\bmodified\s+(?:corn|food|potato)\s+starch\b"),
     ("soy lecithin (conventional)", r"(?<!organic\s)\bsoy lecithin\b")
@@ -270,17 +289,16 @@ def evaluate_product_comprehensive(
         triggered_colors.append("Yellow")
         hard_issues.append("PENDING DATA - B-06/G-08 - manufacturer link missing - complete record")
 
+    # Undisclosed fragrance or proprietary formula
     if ing and re.search(r"\bproprietary(?:\s+blend)?\b|\bsecret blend\b", ing_l):
         triggered_colors.append("Purple")
         hard_issues.append("G-03 - contains 'proprietary' - undisclosed formula")
-    elif (not is_ingestible) and re.search(r"\b(?:fragrance|parfum)\b", ing_l) and not re.search(r"phthalate[- ]free|essential oil|natural fragrance", ing_l):
-        triggered_colors.append("Purple")
-        hard_issues.append("G-03/P-02 - contains undisclosed 'fragrance/parfum' without phthalate-free/allergen disclosure")
+    elif re.search(r"\b(?:fragrance|parfum)\b", f"{ing_l} {p_name.lower()}") and not re.search(r"phthalate[- ]free|essential oil|natural fragrance", ing_l):
+        triggered_colors.append("Red")
+        hard_issues.append("AG-11 - contains undisclosed 'fragrance' or 'parfum' (endocrine disruptor)")
 
     if ing and not is_hardware:
         for rule_id, pat, desc_label in BANNED_PATTERNS:
-            if rule_id == "F-21" and not is_ingestible:
-                continue
             m_ban = re.search(pat, ing_l)
             if m_ban:
                 found_tok = m_ban.group(0)
@@ -297,17 +315,14 @@ def evaluate_product_comprehensive(
 
         if is_ingestible:
             f14_found = []
-            has_explicit_artificial_flavor = False
             for m_name, m_pat in F14_MARKERS:
                 if re.search(m_pat, ing_l):
                     f14_found.append(m_name)
-                    if m_name == "artificial flavor":
-                        has_explicit_artificial_flavor = True
 
-            if len(f14_found) >= 2 or has_explicit_artificial_flavor:
+            if len(f14_found) >= 2:
                 triggered_colors.append("Red")
                 markers_str = ", ".join(f14_found)
-                hard_issues.append(f"F-14 - {len(f14_found)} ultra-processed marker(s) ({markers_str}) - NOVA-4 formulation / artificial flavor ban")
+                hard_issues.append(f"F-14 - {len(f14_found)} ultra-processed markers ({markers_str}) - NOVA-4 formulation ban")
             elif len(f14_found) == 1:
                 triggered_colors.append("Amber")
                 hold_issues.append(f"HOLD - F-14 - 1 ultra-processed marker ({f14_found[0]}) - reformulation or justification needed")
@@ -315,9 +330,9 @@ def evaluate_product_comprehensive(
     if is_ingestible and ing:
         for s_pat in W01_SUGARS:
             m_sug = re.search(s_pat, ing_l)
-            if m_sug:
+            if m_sug and not re.search(r"\b(?:dextrose|invert sugar|high[- ]fructose corn syrup|hfcs|corn syrup)\b", ing_l):
                 triggered_colors.append("Amber")
-                hold_issues.append(f"HOLD - W-01 - added sugar source ({m_sug.group(0)}) - confirm <=8 g added sugar per serving (nutrition panel)")
+                hold_issues.append(f"HOLD - W-01 - added sugar source ({m_sug.group(0)}) - confirm <=8 g added sugar per serving")
                 break
 
     if is_ingestible and ing:
@@ -403,7 +418,7 @@ def evaluate_product_comprehensive(
     m_can = re.search(r"\b(\d+(?:\.\d+)?\s*(?:oz|g|ml)?\s*can|canned|in a can|tin)\b", f"{p_name} {sizes}".lower())
     if m_can and is_ingestible:
         triggered_colors.append("Amber")
-        hold_issues.append(f"HOLD - W-17/M-01 - can/tin packaging ({m_can.group(1)}) - BPA-NI can-lining proof required")
+        hold_issues.append(f"HOLD - W-17/M-01/AG-11 - can/tin packaging ({m_can.group(1)}) - BPA-NI can-lining proof required")
 
     if is_ingestible and ing:
         if re.search(r"\bturmeric\b", ing_l) and re.search(r"\b(?:black pepper|piperine)\b", ing_l):
@@ -458,7 +473,8 @@ def tool_screen_and_writeback(wb_source, min_rating: float = 4.2, prefer_existin
     sheet_sku_counts = {}
 
     for idx, sheet_name in enumerate(wb.sheetnames):
-        if sheet_name == "NN Shortlisting Guidelines":
+        # SKIP BOTH GUIDELINE SHEETS
+        if sheet_name in ["NN Shortlisting Guidelines", "Additional Guidelines"]:
             continue
 
         ws = wb[sheet_name]
@@ -636,7 +652,7 @@ def tool_chemical_toxin_summary(df, top_n=12):
         body = str(summary).split(":", 1)[-1]
         for item in body.split(";"):
             item_clean = item.strip()
-            if any(item_clean.startswith(p) for p in ["F-", "P-", "H-", "M-", "G-03", "G-07", "G-08", "G-09", "B-07"]):
+            if any(item_clean.startswith(p) for p in ["AG-", "F-", "P-", "H-", "M-", "G-03", "G-07", "G-08", "G-09", "B-07"]):
                 all_rules.append(item_clean)
     res = pd.Series(all_rules).value_counts().head(top_n).reset_index()
     res.columns = ["Screening Rule / Toxin", "Violations Count"]
